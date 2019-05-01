@@ -1,6 +1,18 @@
 #!/bin/bash
 
-# Ask for the administrator password upfront
+apps=(
+    wget
+    bash
+    vim
+    fzf
+    tmux
+    exiftool
+    ghi
+    duck
+    ledger
+)
+
+echo "Updating Homebrew requires sudo!"
 sudo -v
 
 # Check for Homebrew and install it if missing
@@ -12,12 +24,25 @@ fi
 
 echo "Ok, we got homebrew - let's go"
 brew update
-brew upgrade --all
 
-apps=(
-    wget
-)
+red=`tput setaf 1`
+green=`tput setaf 2`
+reset=`tput sgr0`
 
-brew install "${apps[@]}"
+for app in ${apps[@]}
+do
+  brew -v install $app
+  if [[ $? -eq 1 ]]; then
+    version=$(brew info $app | sed -n "s/$app:\ \(.*\)/\1/p")
+    brew upgrade $app
+   if [[ $? -eq 1 ]]; then
+      echo "${red}${app} couldn't be installed or updated, skipping...${reset}"
+    else 
+      echo "${green}${app} upgraded successfully to ${version}${reset}"
+    fi 
+  else 
+    echo "${green}${app} installed successfully${reset}"
+  fi
+done
 
 brew cleanup
