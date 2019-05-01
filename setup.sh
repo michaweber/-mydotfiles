@@ -14,6 +14,7 @@
   cd "$DOTFILES_REP"
  
   if git rev-parse --git-dir > /dev/null 2>&1; then
+    pwd
     echo "updating existing repository"
     git pull
   else
