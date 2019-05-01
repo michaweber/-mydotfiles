@@ -12,4 +12,4 @@
   DOTFILES_REP="$HOME/Code/src/github.com/michaweber/mydotfiles"
   mkdir -p "$DOTFILES_REP"
   cd "$DOTFILES_REP"
-  git clone git@github.com:michaweber/mydotfiles.git .
+  git clone https://github.com/michaweber/mydotfiles.git .
