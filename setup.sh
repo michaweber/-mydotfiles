@@ -9,7 +9,7 @@
   fi
   
   echo "======= Installing dotfiles ========"
-  DOTFILES_REP="$HOME/Code/src/github.com/michaweber/mydotfiles"
+  DOTFILES_REP="$HOME/mydotfiles"
   mkdir -p "$DOTFILES_REP"
   cd "$DOTFILES_REP"
  
