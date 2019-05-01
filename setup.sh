@@ -12,4 +12,11 @@
   DOTFILES_REP="$HOME/Code/src/github.com/michaweber/mydotfiles"
   mkdir -p "$DOTFILES_REP"
   cd "$DOTFILES_REP"
-  git clone https://github.com/michaweber/mydotfiles.git .
+ 
+  if git rev-parse --git-dir > /dev/null 2>&1; then
+    echo "updating existing repository"
+    git pull
+  else
+    git clone https://github.com/michaweber/mydotfiles.git .
+  fi
+  
