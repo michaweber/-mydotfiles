@@ -31,5 +31,5 @@ fi
 . "$DOTFILES_REP/install/brew.sh"
 
 if is_macos $1; then
-  echo "how do we get brew"
+  . "$DOTFILES_REP/install/brew.sh"
 fi
