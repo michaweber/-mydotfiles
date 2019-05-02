@@ -3,7 +3,7 @@
 [[ -x `command -v wget` ]] && CMD="wget --no-check-certificate -O -"
 [[ -x `command -v curl` ]] >/dev/null 2>&1 && CMD="curl -#L"
 
-is_osx() {
+is_macos() {
   declare -r OS_NAME="$(uname -s)"
   if [ "$OS_NAME" != "Darwin" ]; then
     return 1  
@@ -30,6 +30,6 @@ fi
 
 . "$DOTFILES_REP/install/brew.sh"
 
-if is_osx $1; then
+if is_macos $1; then
   echo "how do we get brew"
 fi
