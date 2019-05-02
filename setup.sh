@@ -31,5 +31,5 @@ fi
 . "$DOTFILES_REP/install/brew.sh"
 
 if is_macos $1; then
-  . "$DOTFILES_REP/install/brew.sh"
+  . "$DOTFILES_REP/install/brew-cask.sh"
 fi
