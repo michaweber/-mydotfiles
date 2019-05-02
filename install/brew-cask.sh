@@ -33,6 +33,7 @@ apps=(
     firefox-nightly
     google-chrome
     google-chrome-canary
+    resilio-sync
 #    kaleidoscope # https://www.kaleidoscopeapp.com
     slack
     transmit
