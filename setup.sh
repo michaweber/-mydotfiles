@@ -17,7 +17,7 @@ if [ -z "$CMD" ]; then
 fi
   
 echo "======= Installing dotfiles ========"
-DOTFILES_REP="$HOME/mydotfiles"
+DOTFILES_REP="$HOME/.dotfiles"
 mkdir -p "$DOTFILES_REP"
 cd "$DOTFILES_REP"
  
@@ -30,6 +30,6 @@ fi
 
 . "$DOTFILES_REP/install/brew.sh"
 
-if is_macos $1; then
-  . "$DOTFILES_REP/install/brew-cask.sh"
-fi
+# if is_macos $1; then
+#   . "$DOTFILES_REP/install/brew-cask.sh"
+# fi
