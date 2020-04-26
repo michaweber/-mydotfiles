@@ -35,6 +35,8 @@ cd "$DOTFILES_REP"
 #   fi
 # fi
 
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/michaweber/mydotfiles/master/install/brew.sh)"
+
 if git rev-parse --git-dir > /dev/null 2>&1; then
   echo " -> updating existing repository"
   git pull
@@ -42,7 +44,6 @@ else
   git clone https://github.com/michaweber/mydotfiles.git .
 fi
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/michaweber/mydotfiles/master/install/brew.sh)"
 
 # . "$DOTFILES_REP/install/brew.sh"
 
