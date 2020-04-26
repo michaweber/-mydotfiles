@@ -1,6 +1,7 @@
 #!/bin/bash
 
 apps=(
+    git
     wget
     bash
     vim
