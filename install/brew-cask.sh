@@ -52,7 +52,7 @@ apps=(
 
 
 # Install Caskroom
-brew tap caskroom/cask
+brew tap homebrew/cask-cask
 brew tap caskroom/versions
 
 red=`tput setaf 1`
