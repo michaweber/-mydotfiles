@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+command_exists() {
+  type "$1" > /dev/null 2>&1
+}
+
 [[ -x `command -v wget` ]] && CMD="wget --no-check-certificate -O -"
 [[ -x `command -v curl` ]] >/dev/null 2>&1 && CMD="curl -#L"
 
@@ -21,8 +25,17 @@ DOTFILES_REP="$HOME/.dotfiles"
 mkdir -p "$DOTFILES_REP"
 cd "$DOTFILES_REP"
  
+echo " -> checking for git command"
+if ! command_exists git; then
+  echo " -> git not available"
+  if is_macos $1; then
+    echo " -> install xcode comandline Tools"
+    xcode-select --install
+  fi
+fi
+
 if git rev-parse --git-dir > /dev/null 2>&1; then
-  echo "updating existing repository"
+  echo " -> updating existing repository"
   git pull
 else
   git clone https://github.com/michaweber/mydotfiles.git .
