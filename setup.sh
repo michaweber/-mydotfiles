@@ -25,10 +25,11 @@ DOTFILES_REP="$HOME/.dotfiles"
 mkdir -p "$DOTFILES_REP"
 cd "$DOTFILES_REP"
  
-echo " -> checking for git command"
-if ! command_exists git; then
-  echo " -> git not available"
-  if is_macos $1; then
+if is_macos $1; then
+  echo " -> checking for if xcode commandline tools exist"
+  xcode-select -p 1>/dev/null
+  ret=$?
+  if [ $ret -eq 2 ]; then
     echo " -> install xcode comandline Tools"
     xcode-select --install
   fi
