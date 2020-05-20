@@ -33,6 +33,7 @@ if git rev-parse --git-dir > /dev/null 2>&1; then
   echo " -> updating existing repository"
   git pull
 else
+  echo " -> cloning dotfiles repository"
   git clone https://github.com/michaweber/mydotfiles.git .
 fi
 
