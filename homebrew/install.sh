@@ -26,3 +26,19 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 brew bundle --file $DIR/Brewfile
 brew bundle cleanup -f --file $DIR/Brewfile
 
+echo "Cleaning AppStore Apps"
+SAVEIFS=$IFS
+IFS=$(echo -en "\n\b")
+for app in `mas list`;do
+  id=$(echo "$app"|awk -F" " '{print $1}')
+  grep -q "$id" $DIR/Brewfile
+  found=$?
+  if [[ $found -eq 1 ]];then
+    sudo mas uninstall $id
+  fi
+done
+IFS=$SAVEIFS
+
+echo "Looking for Deleted Apps in Trash and removing them"
+sudo find /private/var/root/.Trash -name '*.app' -exec rm -rf "{}" \;
+
