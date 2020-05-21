@@ -1,20 +1,9 @@
 #!/bin/bash
 
-apps=(
-    git@2.26.2
-    wget@1.20.3
-    bash@5.0.17
-    vim@8.2.0800
-    fzf@0.21.1
-    tmux@3.1b
-    exiftool@11.85
-    ghi@1.2.0
-    duck@7.3.1.32784
-    ledger@3.2.1
-)
-
 echo "Updating Homebrew requires sudo!"
 sudo -v
+
+
 
 # Check for Homebrew and install it if missing
 if test ! $(which brew)
@@ -31,32 +20,9 @@ then
 fi
 
 echo "Ok, we got homebrew - let's go"
-# brew update
 
-red=`tput setaf 1`
-green=`tput setaf 2`
-reset=`tput sgr0`
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-for app in ${apps[@]}
-do
-  app_name=$(echo "$app"|awk -F"@" '{print $1}')
-  app_version=$(echo "$app"|awk -F"@" '{print $2}')
-  version=$(brew info $app_name | sed -n "s/$app_name:\ \(.*\)/\1/p" |awk -F" " '{print $2}')
-  if [[ "$app_version" != "$version" ]]; then
-    echo "$app_name version is different, installing: $app"
-    brew -v install $app
-    if [[ $? -eq 1 ]]; then
-      brew upgrade $app
-      if [[ $? -eq 1 ]]; then
-        echo "${red}${app} couldn't be installed or updated, skipping...${reset}"
-      else 
-        echo "${green}${app} upgraded successfully to ${version}${reset}"
-      fi 
-    else 
-      echo "${green}${app} installed successfully${reset}"
-    fi
+brew bundle --file $DIR/Brewfile
+brew bundle cleanup -f --file $DIR/Brewfile
 
-  fi
-done
-
-# brew cleanup
