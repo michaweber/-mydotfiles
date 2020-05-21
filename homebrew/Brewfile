@@ -87,6 +87,7 @@ cask "quicksilver"
 cask "suspicious-package"
 cask "webpquicklook"
 cask "hazel"
+cask "paw"
 mas "1Password 7 - Password Manager", id: 1333542190
 mas "Screens 4", id: 1224268771
 mas "Slack", id: 803453959
@@ -126,5 +127,5 @@ mas "WireGuard", id: 1451685025
 mas "Xcode", id: 497799835
 mas "xScope", id: 447661441
 mas "Jira Cloud by Atlassian", id: 1475897096
-mas "Trello", id: 127850895
+mas "Trello", id: 1278508951
 mas "Vimari", id: 1480933944
