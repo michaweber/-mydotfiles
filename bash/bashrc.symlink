@@ -1,0 +1,4 @@
+if [[ -a ~/.local_bashrc ]]
+then
+    source ~/.local_bashrc
+fi
