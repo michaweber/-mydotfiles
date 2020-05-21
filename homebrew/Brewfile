@@ -78,7 +78,7 @@ cask "iglance"
 cask "little-snitch"
 cask "qlcolorcode"
 cask "qlimagesize"
-cask "qlmarkdown"
+# cask "qlmarkdown"
 cask "qlprettypatch"
 cask "qlstephen"
 cask "quicklook-csv"
@@ -87,6 +87,10 @@ cask "quicksilver"
 cask "suspicious-package"
 cask "webpquicklook"
 cask "hazel"
+mas "1Password 7 - Password Manager", id: 1333542190
+mas "Screens 4", id: 1224268771
+mas "Slack", id: 803453959
+mas "Affinity Publisher", id: 881418622
 mas "Affinity Designer", id: 824171161
 mas "Affinity Photo", id: 824183456
 mas "Aurora HDR", id: 1052074952
@@ -121,3 +125,6 @@ mas "Type to learn", id: 1401007562
 mas "WireGuard", id: 1451685025
 mas "Xcode", id: 497799835
 mas "xScope", id: 447661441
+mas "Jira Cloud by Atlassian", id: 1475897096
+mas "Trello", id: 127850895
+mas "Vimari", id: 1480933944
