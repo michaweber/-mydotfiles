@@ -1,0 +1,6 @@
+#!/bin/bash
+
+rm -rf ~/.Trash/*;
+rm -rf /Volumes/*/.Trashes/*
+
+afplay /System/Library/Components/CoreAudio.component/Contents/SharedSupport/SystemSounds/finder/empty\ trash.aif;
