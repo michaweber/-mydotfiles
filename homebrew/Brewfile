@@ -1,0 +1,127 @@
+tap "caskroom/cask"
+tap "caskroom/versions"
+tap "gobuffalo/tap"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+tap "homebrew/services"
+tap "mas-cli/tap"
+tap "pivotal/tap"
+tap "wallix/awless"
+brew "bash"
+brew "bash-completion"
+brew "python", link: false
+brew "carthage"
+brew "clamav"
+brew "cmake"
+brew "colordiff"
+brew "cowsay"
+brew "curl"
+brew "dateutils"
+brew "docker-completion"
+brew "duck"
+brew "excel-compare"
+brew "exiftool"
+brew "fd"
+brew "fetchmail"
+brew "figlet"
+brew "fish"
+brew "fortune"
+brew "fzf"
+brew "ghi"
+brew "gifsicle"
+brew "lua"
+brew "gnuplot"
+brew "go"
+brew "gradle"
+brew "httrack"
+brew "imagemagick"
+brew "imapsync"
+brew "iperf"
+brew "jq"
+brew "latexdiff"
+brew "ledger"
+brew "lua@5.1"
+brew "ruby"
+brew "macvim"
+brew "mas"
+brew "maven"
+brew "midnight-commander"
+brew "mitmproxy"
+brew "mosh"
+brew "mysql"
+brew "nmap"
+brew "node", link: false
+brew "offlineimap"
+brew "pandoc"
+brew "poppler"
+brew "potrace"
+brew "procmail"
+brew "pwgen"
+brew "rename"
+brew "sshpass"
+brew "telnet"
+brew "the_silver_searcher"
+brew "tmux"
+brew "toilet"
+brew "tomcat"
+brew "tree"
+brew "unrar"
+brew "w3m"
+brew "wakeonlan"
+brew "watch"
+brew "wdiff"
+brew "wget"
+brew "yarn"
+brew "gobuffalo/tap/buffalo"
+brew "pivotal/tap/springboot"
+brew "wallix/awless/awless"
+cask "betterzip"
+cask "google-drive-file-stream"
+cask "iglance"
+cask "little-snitch"
+cask "qlcolorcode"
+cask "qlimagesize"
+cask "qlmarkdown"
+cask "qlprettypatch"
+cask "qlstephen"
+cask "quicklook-csv"
+cask "quicklook-json"
+cask "quicksilver"
+cask "suspicious-package"
+cask "webpquicklook"
+cask "hazel"
+mas "Affinity Designer", id: 824171161
+mas "Affinity Photo", id: 824183456
+mas "Aurora HDR", id: 1052074952
+mas "BarcodeScanner", id: 1434284355
+mas "BeFunky Express", id: 1042457604
+mas "ColorSnapper2", id: 969418666
+mas "Faviconer", id: 923463607
+mas "Gemini 2", id: 1090488118
+mas "Growl", id: 467939042
+mas "HardwareGrowler", id: 475260933
+mas "Image2icon", id: 992115977
+mas "iMovie", id: 408981434
+mas "inddPreview", id: 1153435308
+mas "Intensify", id: 716854513
+mas "iRuler", id: 1224740306
+mas "Kelir", id: 1145215534
+mas "Keynote", id: 409183694
+mas "Microsoft Remote Desktop", id: 715768417
+mas "Monodraw", id: 920404675
+mas "Mountain Duck", id: 1024974133
+mas "NotePlan", id: 1137020764
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Pixelmator Pro", id: 1289583905
+mas "Postico", id: 1031280567
+mas "Snapheal", id: 480623975
+mas "Soulver", id: 413965349
+mas "Sparkle", id: 863015334
+mas "The Unarchiver", id: 425424353
+mas "Transmit", id: 403388562
+mas "Type to learn", id: 1401007562
+mas "WireGuard", id: 1451685025
+mas "Xcode", id: 497799835
+mas "xScope", id: 447661441
