@@ -73,6 +73,8 @@ brew "yarn"
 brew "gobuffalo/tap/buffalo"
 brew "pivotal/tap/springboot"
 brew "wallix/awless/awless"
+brew "glances"
+brew "graphviz"
 cask "betterzip"
 cask "google-drive-file-stream"
 cask "iglance"
@@ -107,7 +109,6 @@ mas "Image2icon", id: 992115977
 mas "iMovie", id: 408981434
 mas "inddPreview", id: 1153435308
 mas "Intensify", id: 716854513
-mas "iRuler", id: 1224740306
 mas "Kelir", id: 1145215534
 mas "Keynote", id: 409183694
 mas "Microsoft Remote Desktop", id: 715768417
