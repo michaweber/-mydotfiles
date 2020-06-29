@@ -1,0 +1,6 @@
+#!/bin/bash
+
+if ping -c 1 -t300 wttr.in &> /dev/null
+  then
+    curl "wttr.in/$1"
+fi
