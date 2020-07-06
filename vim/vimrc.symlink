@@ -1,0 +1,209 @@
+" setup and initialze plugin system
+if empty(glob('~/.vim/autoload/plug.vim'))
+silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+  \ https://raw.githubusercontent.com/michaweber/vim-plug/master/plug.vim 
+autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --go-completer --js-completer' }
+Plug 'alvan/vim-closetag'
+Plug 'othree/html5.vim'
+Plug 'isobit/vim-caddyfile'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'blackrush/vim-gocode'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'benmills/vim-golang-alternate'
+Plug 'tpope/vim-surround'
+Plug 'Raimondi/delimitMate'
+Plug 'ledger/ledger'
+Plug 'ledger/vim-ledger'
+Plug 'ervandew/supertab'
+Plug 'tpope/vim-fugitive'
+Plug 'christianrondeau/vim-base64'
+Plug 'masukomi/html_encode_decode'
+Plug 'cormacrelf/vim-colors-github'
+call plug#end()
+
+"=============================================================================
+" Colors 
+"=============================================================================
+colorscheme github
+set term=screen-256color
+
+"=============================================================================
+" General
+"=============================================================================
+
+set number
+set nocompatible
+syntax on
+filetype plugin indent on
+set noerrorbells
+set encoding=utf-8
+set autowrite
+set autoread
+set laststatus=2
+set backspace=indent,eol,start
+
+set listchars=tab:\.\ ,trail:·
+set list
+set showcmd
+set showmode
+set splitright
+set splitbelow
+set showmatch
+hi MatchParen cterm=none ctermbg=green ctermfg=blue
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+set wildmenu
+set lazyredraw " redraw only when we need to.
+
+set colorcolumn=80
+set cursorline
+set relativenumber
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set softtabstop=2
+set autoindent
+set smartindent
+
+"au FocusGained,BufEnter * :silent! !
+"au FocusLost,WinLeave * :silent! noautocmd w
+
+" put swap files into different directory 
+if empty(glob('~/.vim/swapfiles'))
+silent !mkdir -p ~/.vim/swapfiles
+endif
+set directory=$HOME/.vim/swapfiles//
+
+" Persistent undo
+" :help undo-persistence
+" When you exit Vim your edit history is saved so you can open the file 
+" again 2 days later and undo the changes.
+" Edit history is an important part of your context so I think once you get 
+" used to it you couldn’t use any other editor without this feature.
+if empty(glob('~/.vim/undodir'))
+silent !mkdir -p ~/.vim/undodir
+endif
+set undodir=~/.vim/undodir
+set undofile
+
+" Clipboard
+" It makes y and p copy and paste to the “global” buffer that is used by other
+" apps like the browser.
+set clipboard+=unnamed
+
+
+" NERDTree stuff
+let NERDTreeShowHidden=1 "show hidden files
+
+" 
+set rtp+=/usr/local/opt/fzf
+nnoremap ; :Buffers<CR>
+nnoremap f :Files<CR>
+nnoremap M :Maps<CR>
+nnoremap <Leader>w :Ag!<CR>
+
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+" let g:UltiSnipsExpandTrigger="<c-]>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="vertical"
+
+
+" Ag — The Silver Searcher. Like ack, but faster.
+" https://github.com/ggreer/the_silver_searcher
+
+"let g:ackprg = 'ag --vimgrep'
+"let g:ag_working_path_mode="r"
+"" [Buffers] Jump to the existing window if possible
+"let g:fzf_buffers_jump = 1
+
+" Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
+command! -bang -nargs=* Rg
+\ call fzf#vim#grep(
+\   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+\   <bang>0 ? fzf#vim#with_preview('up:60%')
+\           : fzf#vim#with_preview('right:50%:hidden', '?'),
+\   <bang>0)
+" Likewise, Files command with preview window
+command! -bang -nargs=? -complete=dir Files
+\ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+"   :Ag  - Start fzf with hidden preview window that can be enabled with "?" key 
+"   :Ag! - Start fzf in fullscreen and display the preview window above
+command! -bang -nargs=* Ag
+\ call fzf#vim#ag(<q-args>,
+\                 <bang>0 ? fzf#vim#with_preview('up:60%')
+\                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+\                 <bang>0)
+
+
+"
+" Keymaps
+" :help key-notation
+"
+let mapleader = "<"
+
+map üü :source ~/.vimrc<CR>
+" Toggle NERDTree on control+n
+map <C-n> :NERDTreeToggle<CR>
+" Use control+a to split vertically
+" and move cursor to right buffer  
+map <C-a> :vsp<CR><C-w><Right>
+
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+let g:closetag_shortcut = '>'
+
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd BufNewFile,BufRead *.scss set ft=scss.css
+autocmd BufNewFile,BufRead *.plush.html set ft=html
+
+"==============================================================================
+" Ledger
+"==============================================================================
+
+au BufNewFile,BufRead *.ldg,*.ledger setf ledger | comp ledger
+let g:ledger_maxwidth = 120
+let g:ledger_fold_blanks = 1
+function LedgerSort()
+    :%! ledger -f - print --sort 'date, amount'
+    :%LedgerAlign
+endfunction
+command LedgerSort call LedgerSort()
+
+let g:ledger_maxwidth = 80
+let g:ledger_detailed_first = 1
+let g:ledger_fold_blanks = 0
