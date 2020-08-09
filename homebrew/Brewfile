@@ -7,7 +7,6 @@ tap "mas-cli/tap"
 tap "pivotal/tap"
 tap "wallix/awless"
 brew "bash"
-brew "caffeine"
 brew "bash-completion"
 brew "python", link: false
 brew "carthage"
