@@ -1,6 +1,10 @@
 #!/bin/bash
 
+export PATH="/usr/local/bin:$PATH"
+
 if [[ -a ~/.local_bashrc ]]
 then
     source ~/.local_bashrc
 fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
