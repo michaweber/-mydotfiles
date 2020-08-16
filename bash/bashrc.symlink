@@ -1,6 +1,14 @@
 #!/bin/bash
 
 export PATH="/usr/local/bin:$PATH"
+export PATH="$HOME/.dotfiles/bin:$PATH"
+
+#
+# setup bash completion
+#
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
 
 if [[ -a ~/.local_bashrc ]]
 then

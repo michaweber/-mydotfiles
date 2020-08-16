@@ -94,6 +94,7 @@ cask "suspicious-package"
 cask "webpquicklook"
 cask "hazel"
 cask "paw"
+cask "growlnotify"
 mas "1Password 7 - Password Manager", id: 1333542190
 mas "Screens 4", id: 1224268771
 mas "Slack", id: 803453959
