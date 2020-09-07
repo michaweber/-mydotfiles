@@ -15,14 +15,22 @@ is_macos() {
   return 0
 }
 
+is_linux() {
+  declare -r OS_NAME="$(uname -a)"
+  if ["$OS_NAME" != "Linux" ]; then
+    return 1
+  fi
+  return 0
+}
+
 if [ -z "$CMD" ]; then
   echo "No curl or wget available. Aborting."
   exit 1
 fi
   
 
-echo " -> Check for brew and install"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/michaweber/mydotfiles/master/install/brew.sh)"
+#echo " -> Check for brew and install"
+#sh -c "$(curl -fsSL https://raw.githubusercontent.com/michaweber/mydotfiles/master/install/brew.sh)"
 
 echo " -> Installing dotfiles" 
 DOTFILES_REP="$HOME/.dotfiles"

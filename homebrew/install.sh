@@ -10,13 +10,14 @@ if test ! $(which brew)
 then
   echo "Looks like we need homebrew first, installing..."
   # Install the correct homebrew for each OS type
-  if test "$(uname)" = "Darwin"
-  then
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
-  then
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
-  fi
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  # if test "$(uname)" = "Darwin"
+  # then
+  #   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  # elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
+  # then
+  #   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
+  # fi
 fi
 
 echo "Ok, we got homebrew - let's go"
@@ -39,6 +40,8 @@ for app in `mas list`;do
 done
 IFS=$SAVEIFS
 
-echo "Looking for Deleted Apps in Trash and removing them"
-sudo find /private/var/root/.Trash -name '*.app' -exec rm -rf "{}" \;
-
+if test "$(uname)" = "Darwin"
+then
+  echo "Looking for Deleted Apps in Trash and removing them"
+  sudo find /private/var/root/.Trash -name '*.app' -exec rm -rf "{}" \;
+fi
