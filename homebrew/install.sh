@@ -24,8 +24,8 @@ echo "Ok, we got homebrew - let's go"
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-brew bundle --file $DIR/Brewfile
-brew bundle cleanup -f --file $DIR/Brewfile
+brew bundle --verbose --file $DIR/Brewfile
+brew bundle cleanup --verbose -f --file $DIR/Brewfile
 
 echo "Cleaning AppStore Apps"
 SAVEIFS=$IFS
