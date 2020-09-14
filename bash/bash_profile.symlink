@@ -1,1 +1,8 @@
 [[ -r ~/.bashrc ]] && . ~/.bashrc
+
+# User specific environment and startup programs
+
+PATH=$PATH:$HOME/.local/bin:$HOME/bin
+
+export PATH
+test -r ~/.bash_profile && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)

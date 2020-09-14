@@ -140,6 +140,9 @@ install_dotfiles () {
 # setup_gitconfig
 install_dotfiles
 
+find ~/.dotfiles/homebrew -name install.sh | while read installer ; do echo running "${installer}"; sh -c "${installer}" ; done
+
+
 # If we're on a Mac, let's install and setup homebrew.
 # if [ "$(uname -s)" == "Darwin" ]
 # then

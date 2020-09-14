@@ -1,18 +1,34 @@
 #!/bin/bash
 
-export PATH="/usr/local/bin:$PATH"
-export PATH="$HOME/.dotfiles/bin:$PATH"
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
 
-#
-# setup bash completion
-#
+if [[ -a "/home/linuxbrew/.linuxbrew/bin/brew" ]]
+then
+  eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+fi
+
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
-if [[ -a ~/.local_bashrc ]]
-then
-    source ~/.local_bashrc
-fi
+# if [[ -a ~/.local_bashrc ]]
+# then
+#     source ~/.local_bashrc
+# fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+if [[ -a "$HOME/.rbenv" ]]
+then
+  # rbenv
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+
+  # rbenv
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+fi
+
