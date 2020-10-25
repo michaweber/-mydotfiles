@@ -8,7 +8,7 @@ command_exists() {
 [[ -x `command -v curl` ]] >/dev/null 2>&1 && CMD="curl -#L"
 
 is_macos() {
-  declare -r OS_NAME="$(uname -s)"
+  OS_NAME="$(uname -s)"
   if [ "$OS_NAME" != "Darwin" ]; then
     return 1  
   fi
@@ -16,7 +16,7 @@ is_macos() {
 }
 
 is_linux() {
-  declare -r OS_NAME="$(uname -a)"
+  OS_NAME="$(uname -a)"
   if ["$OS_NAME" != "Linux" ]; then
     return 1
   fi
@@ -45,7 +45,7 @@ else
   git clone git@github.com:michaweber/mydotfiles.git .
 fi
 
-echo " -> Installing Apps through brew-cask"
 if is_macos $1; then
+  echo " -> Installing Apps through brew-cask"
   . "$DOTFILES_REP/install/brew-cask.sh"
 fi
