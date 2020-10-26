@@ -1,10 +1,17 @@
 #!/bin/bash
 
+export PATH="/usr/local/bin:$PATH"
+export PATH="$HOME/.dotfiles/bin:$PATH"
+export PATH="$HOME/.dotfiles/bin/git-fuzzy/bin:$PATH"
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+#
+# setup bash completion
+#
 if command -v brew &> /dev/null
 then
   if [ -f $(brew --prefix)/etc/bash_completion ]; then
