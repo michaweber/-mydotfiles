@@ -24,7 +24,6 @@ brew "fd"
 brew "fetchmail"
 brew "figlet"
 brew "fish"
-brew "fortune"
 brew "fzf"
 brew "ghi"
 brew "gifsicle"
@@ -78,6 +77,7 @@ brew "graphviz"
 brew "ddclient"
 brew "awscli"
 brew "emacs"
+brew muesli/homebrew-tap/duf
 cask "betterzip"
 cask "google-drive-file-stream"
 cask "iglance"
@@ -134,3 +134,4 @@ mas "xScope", id: 447661441
 mas "Jira Cloud by Atlassian", id: 1475897096
 mas "Trello", id: 1278508951
 mas "Vimari", id: 1480933944
+mas "OwlOCR", id: 1499181666

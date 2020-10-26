@@ -4,16 +4,41 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.dotfiles/bin:$PATH"
 export PATH="$HOME/.dotfiles/bin/git-fuzzy/bin:$PATH"
 
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+if [[ -x "/home/linuxbrew/.linuxbrew/bin/brew" ]]
+then
+  eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+fi
+
 #
 # setup bash completion
 #
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
+if command -v brew &> /dev/null
+then
+  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+  fi
 fi
 
-if [[ -a ~/.local_bashrc ]]
-then
-    source ~/.local_bashrc
-fi
+# if [[ -a ~/.local_bashrc ]]
+# then
+#     source ~/.local_bashrc
+# fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+if [[ -a "$HOME/.rbenv" ]]
+then
+  # rbenv
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+
+  # rbenv
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+fi
+
