@@ -77,7 +77,7 @@ brew "graphviz"
 brew "ddclient"
 brew "awscli"
 brew "emacs"
-brew muesli/homebrew-tap/duf
+#brew muesli/homebrew-tap/duf
 cask "betterzip"
 cask "google-drive-file-stream"
 cask "iglance"
