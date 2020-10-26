@@ -26,3 +26,5 @@ apk add python3
 apk add go
 apk add tmux
 apk add emacs
+
+sed -i -e 's/ash/bash/g' /etc/passwd

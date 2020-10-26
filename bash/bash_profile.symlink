@@ -5,4 +5,5 @@
 PATH=$PATH:$HOME/.local/bin:$HOME/bin
 
 export PATH
-test -r ~/.bash_profile && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+# TODO: do we need this?
+# test -r ~/.bash_profile && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
