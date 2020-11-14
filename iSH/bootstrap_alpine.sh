@@ -28,4 +28,4 @@ apk add go
 apk add tmux
 apk add emacs
 
-sed -i -e 's/ash/bash/g' /etc/passwd
+sed -i -e 's#/bin/ash#/bin/bash#g' /etc/passwd
