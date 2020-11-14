@@ -4,13 +4,14 @@ APK="apk-tools-static-2.10.5-r1.apk"
 
 if test ! $(which apk)
 then
-cd 
-mkdir -p apk_tmp
-wget http://dl-cdn.alpinelinux.org/alpine/latest-stable/main/x86/$APK
-tar xvzf ~/$APK
-ln -s /sbin/apk.static /sbin/apk
-cd
-apk
+  cd 
+  wget http://dl-cdn.alpinelinux.org/alpine/latest-stable/main/x86/$APK
+  cd /
+  tar xvzf ~/$APK
+  ln -s /sbin/apk.static /sbin/apk
+  cd
+  apk
+  rm $APK
 fi
 
 # sed -i -e 's/v[[:digit:]]\..*\//edge\//g' /etc/apk/repositories
