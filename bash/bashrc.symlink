@@ -14,10 +14,10 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
-# if [[ -a ~/.local_bashrc ]]
-# then
-#     source ~/.local_bashrc
-# fi
+if [[ -a ~/.local_bashrc ]]
+then
+    source ~/.local_bashrc
+fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
@@ -32,3 +32,13 @@ then
   eval "$(rbenv init -)"
 fi
 
+function cd
+{
+  if [ $# -eq 0 ]; then
+    pushd ~ > /dev/null
+  elif [ " $1" = " -" ]; then
+    pushd "$OLDPWD" > /dev/null
+  else
+    pushd "$@" > /dev/null
+  fi
+}
