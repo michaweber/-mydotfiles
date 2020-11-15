@@ -5,6 +5,7 @@ tap "homebrew/core"
 tap "homebrew/services"
 tap "mas-cli/tap"
 tap "pivotal/tap"
+tap "d12frosted/emacs-plus"
 tap "wallix/awless"
 brew "bash"
 brew "bash-completion"
@@ -77,7 +78,9 @@ brew "graphviz"
 brew "ddclient"
 brew "awscli"
 brew "emacs"
-#brew muesli/homebrew-tap/duf
+brew "emacs-plus", args: ["with-modern-sexy-v2-icon","with-mailutils"]
+# brew "muesli/homebrew-tap/duf"
+brew "youtube-dl"
 cask "betterzip"
 cask "google-drive-file-stream"
 cask "iglance"
@@ -95,6 +98,7 @@ cask "webpquicklook"
 cask "hazel"
 cask "paw"
 cask "growlnotify"
+cask "rectangle"
 mas "1Password 7 - Password Manager", id: 1333542190
 mas "Screens 4", id: 1224268771
 mas "Slack", id: 803453959
@@ -135,3 +139,6 @@ mas "Jira Cloud by Atlassian", id: 1475897096
 mas "Trello", id: 1278508951
 mas "Vimari", id: 1480933944
 mas "OwlOCR", id: 1499181666
+mas "Microsoft Word", id: 462054704
+mas "Apple Configurator 2", id: 1037126344
+mas "Waterminder", id: 1415257369
