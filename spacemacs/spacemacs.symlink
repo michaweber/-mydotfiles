@@ -426,50 +426,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; (set-fontset-font t 'unicode "Symbola" nil 'prepend)
 
   (global-set-key (kbd "H-w") 'formatted-copy)
-)
 
-(defun dotspacemacs/user-config ()
-  "Configuration function for user code.
-This function is called at the very end of Spacemacs initialization after
-layers configuration.
-This is the place where most of your configurations should be done. Unless it is
-explicitly specified that a variable should be set before a package is loaded,
-you should place your code here."
-;; (if (spacemacs/system-is-mac)
-;;     (setq mac-command-modifier 'meta
-;;           mac-option-modifier  'none))
-   (setq org-agenda-files (list "~/files/org/life.org"
-                                "~/files/org/inbox.org"))
-   (setq org-refile-targets (quote ((nil :maxlevel . 9)
-                                    (org-agenda-files :maxlevel . 9))))
-
-   (setq org-todo-keywords
-         '((sequence "TODO(t!)" "NEXT(n!)" "BLOCKED(b!)" "TODELEGATE(g!)" "DELEGATED(D!)" "FOLLOWUP(f!)" "TICKLE(T!)" "|" "CANCELLED(c!)" "DONE(d!)")))
-
-   (setq org-todo-keyword-faces
-         (quote (("TODO" :foreground "red" :weight bold)
-                 ("NEXT" :foreground "blue" :weight bold)
-                 ("DONE" :foreground "forest green" :weight bold)
-                 ("WAITING" :foreground "orange" :weight bold)
-                 ("HOLD" :foreground "magenta" :weight bold)
-                 ("CANCELLED" :foreground "forest green" :weight bold)
-                 ("MEETING" :foreground "forest green" :weight bold)
-                 ("PHONE" :foreground "forest green" :weight bold))))
-
-   ; (define-key evil-normal-state-map "f" 'fzf)
-   (define-key org-mode-map (kbd "C-c g") 'org-mac-grab-link) 
-
-   (defun org-to-clipboard ()
-     "Convert the contents of the current buffer or region from Org
-mode to HTML.  Store the result in the clipboard."
-     (interactive)
-     (if (use-region-p)
-         (shell-command-on-region (region-beginning)
-                                  (region-end)
-                                  "org2clip")
-       (shell-command-on-region (point-min)
-                                (point-max)
-                                "org2clip")))
    (defun air--org-global-custom-ids ()
      "Find custom ID fields in all org agenda files."
      (let ((files (org-agenda-files))
@@ -519,6 +476,52 @@ mode to HTML.  Store the result in the clipboard."
               (file (car id-parts))
               (line (string-to-int (cadr id-parts))))
          (org-insert-link nil (concat file "::#" custom-id) custom-id)))))
+
+
+  )
+
+(defun dotspacemacs/user-config ()
+  "Configuration function for user code.
+This function is called at the very end of Spacemacs initialization after
+layers configuration.
+This is the place where most of your configurations should be done. Unless it is
+explicitly specified that a variable should be set before a package is loaded,
+you should place your code here."
+;; (if (spacemacs/system-is-mac)
+;;     (setq mac-command-modifier 'meta
+;;           mac-option-modifier  'none))
+   (setq org-agenda-files (list "~/files/org/life.org"
+                                "~/files/org/inbox.org"))
+   (setq org-refile-targets (quote ((nil :maxlevel . 9)
+                                    (org-agenda-files :maxlevel . 9))))
+
+   (setq org-todo-keywords
+         '((sequence "TODO(t!)" "NEXT(n!)" "BLOCKED(b!)" "TODELEGATE(g!)" "DELEGATED(D!)" "FOLLOWUP(f!)" "TICKLE(T!)" "|" "CANCELLED(c!)" "DONE(d!)")))
+
+   (setq org-todo-keyword-faces
+         (quote (("TODO" :foreground "red" :weight bold)
+                 ("NEXT" :foreground "blue" :weight bold)
+                 ("DONE" :foreground "forest green" :weight bold)
+                 ("WAITING" :foreground "orange" :weight bold)
+                 ("HOLD" :foreground "magenta" :weight bold)
+                 ("CANCELLED" :foreground "forest green" :weight bold)
+                 ("MEETING" :foreground "forest green" :weight bold)
+                 ("PHONE" :foreground "forest green" :weight bold))))
+
+   ; (define-key evil-normal-state-map "f" 'fzf)
+   (define-key org-mode-map (kbd "C-c g") 'org-mac-grab-link) 
+
+   (defun org-to-clipboard ()
+     "Convert the contents of the current buffer or region from Org
+mode to HTML.  Store the result in the clipboard."
+     (interactive)
+     (if (use-region-p)
+         (shell-command-on-region (region-beginning)
+                                  (region-end)
+                                  "org2clip")
+       (shell-command-on-region (point-min)
+                                (point-max)
+                                "org2clip")))
    )
 
 ;; Do not write anything past this comment. This is where Emacs will
