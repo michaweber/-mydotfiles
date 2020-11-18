@@ -1,3 +1,14 @@
 #!/bin/bash
 
-vim ~/.dotfiles/homebrew/Brewfile
+cd ~/.dotfiles/
+
+# lets do an update
+git pull
+
+# edit Brewfile
+vim homebrew/Brewfile
+
+# push changes
+git add homebrew/Brewfile
+git commit -m "updated Apps"
+git push
