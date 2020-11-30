@@ -508,13 +508,14 @@ you should place your code here."
                                 "~/files/org/jira"))
 
    (setq org-todo-keywords
-         '((sequence "PROJ(p!)" "TODO(t!)" "NEXT(n!)" "WAITING(w!)" "BLOCKED(b!)" "TODELEGATE(g!)" "DELEGATED(D!)" "FOLLOWUP(f!)" "TICKLE(T!)" "|" "CANCELLED(c!)" "DONE(d!)")))
+         '((sequence "PROJ(p!)" "TODO(t!)" "NEXT(n!)" "WAITING(w!)" "BLOCKED(b!)" "TODELEGATE(g!)" "DELEGATED(D!)" "FOLLOWUP(f!)" "TICKLE(T!)" "|" "CANCELLED(c!)" "DONE(d!)" "CALL(C!)")))
 
    (setq org-todo-keyword-faces
          (quote (("PROJ" :foreground "dark blue" :weight bold)
                  ("TODO" :foreground "red" :weight bold)
                  ("NEXT" :foreground "blue" :weight bold)
                  ("DONE" :foreground "forest green" :weight bold)
+                 ("CALL" :foreground "forest green" :weight bold)
                  ("WAITING" :foreground "orange" :weight bold)
                  ("HOLD" :foreground "magenta" :weight bold)
                  ("CANCELLED" :foreground "forest green" :weight bold)
