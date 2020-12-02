@@ -79,6 +79,7 @@ brew "ddclient"
 brew "awscli"
 # brew "emacs"
 brew "emacs-plus", args: ["with-modern-sexy-v2-icon","with-mailutils"]
+brew "mu"
 # brew "muesli/homebrew-tap/duf"
 brew "youtube-dl"
 cask "betterzip"
