@@ -46,7 +46,8 @@ This function should only modify configuration layer settings."
      markdown
      (org :variables
           org-enable-jira-support t
-          jiralib-url "https://newmoto.atlassian.net:443")
+         ;; jiralib-url "https://JIRADOMAIN.atlassian.net:443"
+      )
      ;; (shell :variables shell-default-height 30 shell-default-position
      ;;        'bottom) spell-checking syntax-checking version-control
      finance
@@ -55,7 +56,12 @@ This function should only modify configuration layer settings."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(
+    (multi-libvterm :location 
+     (recipe
+     :fetcher github
+     :repo "nyyManni/ejira"))
+   )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -184,7 +190,8 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-light
+   dotspacemacs-themes '(obsidian
+                         spacemacs-light
                          spacemacs-dark)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
@@ -413,6 +420,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
           ("org"      . "orgmode.org/elpa/")
           ("gnu"      . "elpa.gnu.org/packages/")))
 
+
+
   (setq mac-command-modifier 'meta
         mac-option-modifier 'none
         default-input-method "MacOSX")
@@ -498,6 +507,61 @@ you should place your code here."
   (setq org-refile-use-outline-path t)
   (setq org-outline-path-complete-in-steps nil)
 
+
+  ;; golang
+
+  (setq gofmt-command "goimports")
+  (add-hook 'before-save-hook 'gofmt-before-save)
+
+  ;; spaces for tabs
+(defun my-setup-indent (n)
+  ;; java/c/c++
+  (setq-local c-basic-offset n)
+  ;; web development
+  (setq-local coffee-tab-width n) ; coffeescript
+  (setq-local javascript-indent-level n) ; javascript-mode
+  (setq-local js-indent-level n) ; js-mode
+  (setq-local js2-basic-offset n) ; js2-mode, in latest js2-mode, it's alias of js-indent-level
+  (setq-local web-mode-markup-indent-offset n) ; web-mode, html tag in html file
+  (setq-local web-mode-css-indent-offset n) ; web-mode, css in html file
+  (setq-local web-mode-code-indent-offset n) ; web-mode, js code in html file
+  (setq-local css-indent-offset n) ; css-mode
+  )
+
+(defun my-office-code-style ()
+  (interactive)
+  (message "Office code style!")
+  ;; use tab instead of space
+  (setq-local indent-tabs-mode t)
+  ;; indent 4 spaces width
+  (my-setup-indent 4))
+
+(defun my-personal-code-style ()
+  (interactive)
+  (message "My personal code style!")
+  ;; use space instead of tab
+  (setq indent-tabs-mode nil)
+  ;; indent 2 spaces width
+  (my-setup-indent 2)):warn-unless-encrypted
+
+(defun my-setup-develop-environment ()
+  (interactive)
+  (let ((proj-dir (file-name-directory (buffer-file-name))))
+    ;; if hobby project path contains string "hobby-proj1"
+    (if (string-match-p "hobby-proj1" proj-dir)
+        (my-personal-code-style))
+
+    ;; if commericial project path contains string "commerical-proj"
+    (if (string-match-p "commerical-proj" proj-dir)
+        (my-office-code-style))))
+
+;; prog-mode-hook requires emacs24+
+(add-hook 'prog-mode-hook 'my-setup-develop-environment)
+;; a few major-modes does NOT inherited from prog-mode
+(add-hook 'lua-mode-hook 'my-setup-develop-environment)
+(add-hook 'web-mode-hook 'my-setup-develop-environment)
+
+(my-personal-code-style)
   ;; (if (spacemacs/system-is-mac)
 ;;     (setq mac-command-modifier 'meta
 ;;           mac-option-modifier  'none))
@@ -505,10 +569,11 @@ you should place your code here."
    (setq org-jira-working-dir "~/files/org/jira")
    (setq org-agenda-files (list "~/files/org/life.org"
                                 "~/files/org/inbox.org"
-                                "~/files/org/jira"))
+                                "~/files/org/jira"
+                                "~/files/org/tickler.org"))
 
    (setq org-todo-keywords
-         '((sequence "PROJ(p!)" "TODO(t!)" "NEXT(n!)" "WAITING(w!)" "BLOCKED(b!)" "TODELEGATE(g!)" "DELEGATED(D!)" "FOLLOWUP(f!)" "TICKLE(T!)" "|" "CANCELLED(c!)" "DONE(d!)")))
+         '((sequence "TODO(t!)" "NEXT(n!)" "WAITING(w!)" "NEEDS FEEDBACK(f!)" "BLOCKED(b!)" "PROJ(p!)" "TODELEGATE(g!)" "DELEGATED(D!)" "FOLLOWUP(f!)" "TICKLE(T!)" "|" "CANCELLED(c!)" "DONE(d!)")))
 
    (setq org-todo-keyword-faces
          (quote (("PROJ" :foreground "dark blue" :weight bold)
@@ -562,8 +627,33 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default bold shadow italic underline bold bold-italic bold])
+ '(evil-want-Y-yank-to-eol nil)
+ '(fci-rule-color "#343d46")
  '(package-selected-packages
-   '(ob-go org-jira ox-jira haml-mode web-completion-data csv-mode markdown-mode magit-popup gitignore-mode magit git-commit with-editor transient company yasnippet auto-complete popup org-category-capture s dash alert log4e gntp wgrep smex ivy-hydra counsel-projectile counsel swiper ivy ws-butler winum which-key web-mode volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit spaceline smeargle slim-mode scss-mode sass-mode restart-emacs rainbow-delimiters pug-mode popwin persp-mode pcre2el paradox orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum linum-relative link-hint ledger-mode indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio go-guru go-eldoc gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy flycheck-pos-tip flycheck-ledger flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu emoji-cheat-sheet-plus emmet-mode elisp-slime-nav dumb-jump diminish diff-hl define-word company-web company-statistics company-go company-emoji column-enforce-mode clean-aindent-mode auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+   '(dash-functional go-complete go-autocomplete obsidian-theme org-jira ox-jira haml-mode web-completion-data csv-mode markdown-mode magit-popup gitignore-mode magit git-commit with-editor transient company yasnippet auto-complete popup org-category-capture s dash alert log4e gntp wgrep smex ivy-hydra counsel-projectile counsel swiper ivy ws-butler winum which-key web-mode volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit spaceline smeargle slim-mode scss-mode sass-mode restart-emacs rainbow-delimiters pug-mode popwin persp-mode pcre2el paradox orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum linum-relative link-hint ledger-mode indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio go-guru go-eldoc gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy flycheck-pos-tip flycheck-ledger flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu emoji-cheat-sheet-plus emmet-mode elisp-slime-nav dumb-jump diminish diff-hl define-word company-web company-statistics company-go company-emoji column-enforce-mode clean-aindent-mode auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))
+ '(vc-annotate-background nil)
+ '(vc-annotate-color-map
+   '((20 . "#bf616a")
+     (40 . "#DCA432")
+     (60 . "#ebcb8b")
+     (80 . "#B4EB89")
+     (100 . "#89EBCA")
+     (120 . "#89AAEB")
+     (140 . "#C189EB")
+     (160 . "#bf616a")
+     (180 . "#DCA432")
+     (200 . "#ebcb8b")
+     (220 . "#B4EB89")
+     (240 . "#89EBCA")
+     (260 . "#89AAEB")
+     (280 . "#C189EB")
+     (300 . "#bf616a")
+     (320 . "#DCA432")
+     (340 . "#ebcb8b")
+     (360 . "#B4EB89")))
+ '(vc-annotate-very-old-color nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
