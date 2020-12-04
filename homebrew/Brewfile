@@ -107,6 +107,7 @@ cask "rectangle"
 cask "choosy"
 cask "google-chrome"
 cask "proxyman"
+cask "little-snitch"
 mas "1Password 7 - Password Manager", id: 1333542190
 mas "Screens 4", id: 1224268771
 mas "Slack", id: 803453959
