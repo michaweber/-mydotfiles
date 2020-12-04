@@ -26,6 +26,11 @@ then
     source ~/.local_bashrc
 fi
 
+if [[ -a ~/.dotaddons/.addons_bashrc ]]
+then
+    source ~/.dotaddons/.addons_bashrc
+fi
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 if [[ -a "$HOME/.rbenv" ]]
