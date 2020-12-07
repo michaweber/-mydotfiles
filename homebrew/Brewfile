@@ -82,6 +82,7 @@ brew "emacs-plus", args: ["with-modern-sexy-v2-icon","with-mailutils"]
 brew "mu"
 # brew "muesli/homebrew-tap/duf"
 brew "youtube-dl"
+brew "go-jira"
 cask "betterzip"
 cask "google-drive-file-stream"
 cask "iglance"
