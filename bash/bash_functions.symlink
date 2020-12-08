@@ -1,0 +1,11 @@
+#!/bin/bash
+
+notify(){
+  cmd=$@ # Somehow interpolate $@ directly doesn't work.
+  $@ && say 'Watch Completed!' && osascript -e "display notification \"Completed: $cmd\" with title \"Watch Alert\""
+}
+
+notif(){
+  cmd=$@ # Somehow interpolate $@ directly doesn't work.
+  say "$cmd completed!" && osascript -e "display notification \"Completed: $cmd\" with title \"Notif Alert\""
+}
