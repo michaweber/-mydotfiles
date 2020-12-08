@@ -31,6 +31,15 @@ then
     source ~/.dotaddons/.addons_bashrc
 fi
 
+#
+# add iTerm shell integration 
+#
+if [[ -a ~/.dotfiles/iterm/iterm2_shell_integration.bash ]]
+then
+    source ~/.dotfiles/iterm/iterm2_shell_integration.bash
+fi
+
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 if [[ -a "$HOME/.rbenv" ]]
