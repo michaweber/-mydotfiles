@@ -27,6 +27,8 @@
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-one)
 
+(setq projectile-project-search-path '("~/Code/src/github.com/michaweber"))
+
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 ;;
@@ -76,10 +78,13 @@
               ("PHONE" :foreground "forest green" :weight bold))))
 
 ;; org-refile
-(setq org-refile-targets (quote ((nil :maxlevel . 3)
-                                   (org-agenda-files :maxlevel . 3))))
+(setq org-refile-targets (quote ((nil :maxlevel . 10)
+                                   (org-agenda-files :maxlevel . 10))))
 (setq org-refile-use-outline-path t)
 (setq org-outline-path-complete-in-steps nil)
+
+;; org-roam
+(setq org-roam-directory "~/files/org/org-roam")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
