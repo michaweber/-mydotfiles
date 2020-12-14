@@ -90,3 +90,13 @@ function cd
     pushd "$@" > /dev/null
   fi
 }
+
+function wttr() {
+  if ping -c 1 -t300 wttr.in &> /dev/null
+  then
+    curl --connect-timout 1 -max-time 1 "http://wttr.in/$1"
+  fi
+}
+
+wttr "Vienna?0"
+
