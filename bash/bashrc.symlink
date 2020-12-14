@@ -102,7 +102,7 @@ function cd
 function wttr() {
   if ping -c 1 -t300 wttr.in &> /dev/null
   then
-    curl --connect-timout 1 -max-time 1 "http://wttr.in/$1"
+    curl --connect-timeout 0.2 --max-time 0.2 "http://wttr.in/$1"
   fi
 }
 
