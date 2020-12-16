@@ -126,7 +126,7 @@
 ;;                 org-download-method 'directory
 ;;                 org-download-heading-lvl 1
 ;;                 ))
-
+(use-package! literate-calc-mode :ensure t)
 
 (defun my-org-screenshot ()
   "Take a screenshot into a time stamped unique-named file in the
