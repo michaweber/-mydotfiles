@@ -3,6 +3,7 @@
 export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.dotfiles/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
+export PATH="$HOME/Code/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.dotfiles/bin/git-fuzzy/bin:$PATH"
 
@@ -58,9 +59,16 @@ then
   eval "$(rbenv init -)"
 fi
 
+#
 # PS1
+#
 export PS1=" \t \W \$ "
+
+#
+# enable vi mode in Bash
+#
 set -o vi
+
 bind 'set show-all-if-ambiguous on'
 bind 'TAB:menu-complete'
 export EDITOR=vim
@@ -94,7 +102,7 @@ function cd
 function wttr() {
   if ping -c 1 -t300 wttr.in &> /dev/null
   then
-    curl --connect-timout 1 -max-time 1 "http://wttr.in/$1"
+    curl --connect-timeout 0.2 --max-time 0.2 "http://wttr.in/$1"
   fi
 }
 
