@@ -96,6 +96,19 @@
       mac-option-modifier 'none
       default-input-method "MacOSX")
 
+
+;; evil-easymotion (see `+evil/easymotion')
+(map!
+
+(:after evil-easymotion
+ :m "gs" evilem-map
+ (:map evilem-map
+  "a" (evilem-create #'evil-forward-arg)
+  "A" (evilem-create #'evil-backward-arg)
+  "s" #'evil-avy-goto-char-2
+  "SPC" (cmd! (let ((current-prefix-arg t)) (evil-avy-goto-char-timer)))
+  "." #'evil-avy-goto-char-timer))
+)
 ;; golang
 
 (setq gofmt-command "goimports")
