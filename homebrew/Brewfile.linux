@@ -1,4 +1,8 @@
+tap "gobuffalo/tap"
 brew "bash"
 brew "bash-completion"
 brew "curl"
 brew "vim"
+brew "tmux"
+brew "node@10"
+brew "go"
