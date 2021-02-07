@@ -1,14 +1,37 @@
 #!/bin/bash
 
+is_macos() {
+  OS_NAME="$(uname -s)"
+  if [ "$OS_NAME" != "Darwin" ]; then
+    return 1  
+  fi
+  return 0
+}
+
+is_linux() {
+  OS_NAME="$(uname -a)"
+  if ["$OS_NAME" != "Linux" ]; then
+    return 1
+  fi
+  return 0
+}
+
 cd ~/.dotfiles/
 
 # lets do an update
 git pull
 
-# edit Brewfile
-vim homebrew/Brewfile
+#edit Brewfile
+if is_linux $1; then
+  vim homebrew/Brewfile.linux
+  git add homebrew/Brewfile.linux
+fi
+
+if is_macos $1; then
+  vim homebrew/Brewfile
+  git add homebrew/Brewfile
+fi
 
 # push changes
-git add homebrew/Brewfile
 git commit -m "updated Apps"
 git push
