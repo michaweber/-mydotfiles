@@ -51,7 +51,7 @@ brew "mysql"
 brew "nmap"
 ## brew "node", link: false
 #brew "node@10"
-brew "offlineimap"
+# brew "offlineimap"
 brew "pandoc"
 brew "poppler"
 brew "potrace"
