@@ -10,6 +10,7 @@ tap "wallix/awless"
 brew "bash"
 brew "bash-completion"
 brew "python", link: false
+brew "smartmontools"
 brew "carthage"
 brew "clamav"
 brew "cmake"
