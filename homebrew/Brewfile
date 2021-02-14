@@ -7,6 +7,7 @@ tap "mas-cli/tap"
 tap "pivotal/tap"
 tap "d12frosted/emacs-plus"
 tap "wallix/awless"
+tap "spring-io/tap"
 brew "bash"
 brew "bash-completion"
 brew "python", link: false
@@ -71,12 +72,12 @@ brew "wdiff"
 brew "wget"
 brew "yarn"
 brew "gobuffalo/tap/buffalo"
-brew "pivotal/tap/springboot"
 brew "wallix/awless/awless"
 brew "glances"
 brew "graphviz"
 brew "ddclient"
 brew "awscli"
+# brew "spring-boot"
 # brew "emacs"
 brew "emacs-plus", args: ["with-modern-sexy-v2-icon","with-mailutils"]
 brew "mu"
@@ -129,8 +130,8 @@ mas "BeFunky Express", id: 1042457604
 mas "ColorSnapper2", id: 969418666
 mas "Faviconer", id: 923463607
 mas "Gemini 2", id: 1090488118
-mas "Growl", id: 467939042
-mas "HardwareGrowler", id: 475260933
+# mas "Growl", id: 467939042
+# mas "HardwareGrowler", id: 475260933
 mas "Image2icon", id: 992115977
 mas "iMovie", id: 408981434
 mas "inddPreview", id: 1153435308
