@@ -50,7 +50,7 @@
   (setq org-agenda-files (list "~/files/org/life.org"
                                "~/files/org/inbox.org"
                                "~/files/org/jira"
-                               "~/files/org/essensplan.org"
+                               "~/files/org/gerichte.org"
                                "~/files/org/tickler.org")))
 
 (after! org
@@ -86,9 +86,16 @@
 ;; org-roam
 (setq org-roam-directory "~/files/org/org-roam")
 
+;; org-journal
+(setq org-journal-dir "~/files/org/org-journal"
+      org-journal-file-format "%Y-%m-%d.org"
+      org-journal-date-format "%A, %d %B %Y"
+      org-journal-file-type 'weekly)
+
+(setq org-journal-enable-agenda-integration t)
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type nil)
 
 ;; Use cmd as meta instead of alt, otherwise we can't use alt+l for @, oder
 ;; alt+n for ~ on german keyboard
@@ -109,6 +116,9 @@
   "SPC" (cmd! (let ((current-prefix-arg t)) (evil-avy-goto-char-timer)))
   "." #'evil-avy-goto-char-timer))
 )
+
+(setq evil-ex-search-vim-style-regexp nil)
+
 ;; golang
 
 (setq gofmt-command "goimports")
@@ -139,7 +149,7 @@
 ;;                 org-download-method 'directory
 ;;                 org-download-heading-lvl 1
 ;;                 ))
-(use-package! literate-calc-mode :ensure t)
+;;(use-package! literate-calc-mode :ensure t)
 
 (defun my-org-screenshot ()
   "Take a screenshot into a time stamped unique-named file in the
