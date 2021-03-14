@@ -51,10 +51,10 @@ brew "mitmproxy"
 brew "mosh"
 brew "mysql"
 brew "nmap"
-## brew "node", link: false
-# brew "node@10"
-# brew "yarn"
-# brew "offlineimap"
+brew "node", link: false
+brew "node@10"
+brew "yarn"
+brew "offlineimap"
 brew "pandoc"
 brew "poppler"
 brew "potrace"
@@ -102,7 +102,7 @@ cask "iglance"
 cask "little-snitch"
 cask "qlcolorcode"
 cask "qlimagesize"
-# cask "qlmarkdown"
+cask "qlmarkdown"
 cask "qlprettypatch"
 cask "qlstephen"
 cask "quicklook-csv"
@@ -133,8 +133,8 @@ mas "BeFunky Express", id: 1042457604
 mas "ColorSnapper2", id: 969418666
 mas "Faviconer", id: 923463607
 mas "Gemini 2", id: 1090488118
-# mas "Growl", id: 467939042
-# mas "HardwareGrowler", id: 475260933
+mas "Growl", id: 467939042
+mas "HardwareGrowler", id: 475260933
 mas "Image2icon", id: 992115977
 mas "iMovie", id: 408981434
 mas "inddPreview", id: 1153435308
