@@ -9,8 +9,8 @@ is_macos() {
 }
 
 is_linux() {
-  OS_NAME="$(uname -a)"
-  if ["$OS_NAME" != "Linux" ]; then
+  OS_NAME="$(uname -s)"
+  if [ "$OS_NAME" != "Linux" ]; then
     return 1
   fi
   return 0
