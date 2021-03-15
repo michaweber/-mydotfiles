@@ -1,1 +1,4 @@
+brew "python3"
+brew "node"
+brew "yarn"
 brew "ledger"

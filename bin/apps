@@ -8,9 +8,45 @@ is_macos() {
   return 0
 }
 
+is_macx86() {
+  OS_NAME="$(uname -s)"
+  PROC_ARCH="$(uname -m)"
+  if [ "$OS_NAME" != "Darwin" ]; then
+    if [ "${PROC_ARCH}" = "x86_64" ]; then
+      return 1  
+    else
+      return 0  
+    fi
+  fi
+  return 0
+}
+
+is_macArm() {
+  OS_NAME="$(uname -s)"
+  PROC_ARCH="$(uname -m)"
+  if [ "$OS_NAME" != "Darwin" ]; then
+    if [ "${PROC_ARCH}" = "arm64" ]; then
+      echo "Apple silicon mac with arm64 architecture"
+      return 1 # Apple silicon with arm64
+    elif [ "${PROC_ARCH}" = "x86_64" ]; then
+      echo "Intel-based mac with x86_64 architecture or Rosetta2 translated process"
+      if [ "$(sysctl -in sysctl.proc_translated)" = "1" ]; then
+        echo "Running on Rosetta 2" 
+        return 1 
+      else
+        echo "Running on native Intel"
+      fi
+    else
+      echo "Unknown architecture: ${PROC_ARCH}"
+    fi  
+  fi
+  return 0
+}
+
+
 is_linux() {
-  OS_NAME="$(uname -a)"
-  if ["$OS_NAME" != "Linux" ]; then
+  OS_NAME="$(uname -s)"
+  if [ "$OS_NAME" != "Linux" ]; then
     return 1
   fi
   return 0
@@ -28,8 +64,15 @@ if is_linux $1; then
 fi
 
 if is_macos $1; then
-  vim homebrew/Brewfile
-  git add homebrew/Brewfile
+  if is_macArm $1; then
+    vim homebrew/Brewfile.mac
+    git add homebrew/Brewfile.mac
+    vim homebrew/Brewfile.rosetta
+    git add homebrew/Brewfile.rosetta
+  else 
+    vim homebrew/Brewfile
+    git add homebrew/Brewfile
+  fi
 fi
 
 # push changes

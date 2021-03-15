@@ -8,3 +8,5 @@ if [ ! -d "$DIR" ]; then
 else 
   echo "$DIR already exists skipping"
 fi
+
+$DIR/bin/doom sync
