@@ -78,6 +78,7 @@ brew "glances"
 brew "graphviz"
 brew "ddclient"
 brew "awscli"
+brew "iperf3"
 # brew "spring-boot"
 # brew "emacs"
 brew "emacs-plus", args: ["with-modern-sexy-v2-icon","with-mailutils"]
